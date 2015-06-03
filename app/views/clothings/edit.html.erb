@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+
+<% if @clothing.errors.any? %>
+  <% @clothing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Clothing #<%= @clothing.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_clothing/<%= @clothing.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for needs_cleaning -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="needs_cleaning">
+                  <input type="checkbox" id="needs_cleaning" name="needs_cleaning" value="1" <%= "checked" if @clothing.needs_cleaning %>>
+                  Needs cleaning
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for max_no_wears -->
+          <div class="form-group">
+            <label for="max_no_wears" class="col-sm-2 control-label">
+              Max no wears
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="max_no_wears" name="max_no_wears" placeholder="Max no wears" class="form-control" value="<%= @clothing.max_no_wears %>">
+            </div>
+          </div>
+
+          <!-- Label and input for description -->
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">
+              Category
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="description" name="description" placeholder="CDescription" class="form-control" value="<%= @clothing.description %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update Clothing
+              </button>
+              or
+              <a href="/clothings/<%= @clothing.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->

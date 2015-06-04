@@ -1,4 +1,13 @@
 class WearsController < ApplicationController
+  #before_action :check_if_owner, only: [:read, :edit, :update, :destroy]
+
+  #def check_if_owner
+  #wears = Wear.find(params[:id])
+    #if @clothing.user_id != current_user.id
+     # redirect_to "/wears", notice: "Nope! That's not yours"
+   # end
+  #end
+
   def index
     @wears = Wear.all
   end
@@ -23,6 +32,7 @@ class WearsController < ApplicationController
 
   def record
       @wear = Wear.new
+      @wear.clothing_id = params[:clothing_id]
 
     @wear.save
 

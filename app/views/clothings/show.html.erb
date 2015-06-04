@@ -17,11 +17,11 @@
               <dd><%= @clothing.max_no_wears %></dd>
 
               <dt>Actual wears</dt>
-              <dd>#@wear.number</dd>
-
+              <dd><%=  @clothing.wears.count %></dd>
+              <% if @clothing.dry_cleans.last %>
               <dt>Last Dry Clean Date</dt>
-              <dd>#@dry_clean.updated_at </dd>
-
+              <dd> <%=  @clothing.dry_cleans.last.updated_at %></dd>
+              <% end %>
               <dt>Category</dt>
               <dd><%= @clothing.description %></dd>
 

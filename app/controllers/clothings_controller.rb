@@ -1,5 +1,5 @@
 class ClothingsController < ApplicationController
-  before_action :check_if_owner, only: [:edit, :update, :destroy]
+  before_action :check_if_owner, only: [:read, :edit, :update, :destroy]
 
   def check_if_owner
   clothing = Clothing.find(params[:id])
@@ -18,7 +18,8 @@ class ClothingsController < ApplicationController
   end
 
   def new
-    @clothing = Clothing.new
+    @clothing = Clothing
+    .new
   end
 
   def create
@@ -44,7 +45,6 @@ class ClothingsController < ApplicationController
   def update
     @clothing = Clothing.find(params[:id])
     @clothing.user_id = current_user.id
-    @clothing.needs_cleaning = params[:needs_cleaning]
     @clothing.max_no_wears = params[:max_no_wears]
     @clothing.description = params[:description]
 
@@ -57,7 +57,7 @@ class ClothingsController < ApplicationController
 
   def destroy
     @clothing = Clothing.find(params[:id])
-
+    @clothing.user_id = current_user.id
     @clothing.destroy
 
 

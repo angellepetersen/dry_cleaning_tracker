@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   get "/dry_cleans/new", :controller => "dry_cleans", :action => "new"
   post "/create_dry_clean", :controller => "dry_cleans", :action => "create"
 
+  get "/dry_cleans/new/:clothing_id", :controller => "dry_cleans", :action => "record"
+
   # READ
   get "/dry_cleans", :controller => "dry_cleans", :action => "index"
   get "/dry_cleans/:id", :controller => "dry_cleans", :action => "show"

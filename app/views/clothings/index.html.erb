@@ -13,14 +13,16 @@
   </div>
 </div>
 
+
+
 <hr>
 
 <div class="row isotope-container">
-<% @clothings.each do |clothing| %>
-  <% if clothing.user_id == current_user.id %>
-  <div class="col-xs-20 col-sm-8 col-md-15 col-lg-3 isotope-item">
+ <% @clothings.each do |clothing| %>
+ <% if clothing.user_id == current_user.id %>
+    <div class="col-xs-20 col-sm-8 col-md-15 col-lg-3 isotope-item">
     <div class="panel panel-default">
-      <div class="panel-heading">
+    <div class="panel-heading">
         <h3 class="panel-title">Item #<%= clothing.id %></h3>
       </div>
       <div class="dl-horizontal">
@@ -29,17 +31,20 @@
           <dd><%= clothing.needs_cleaning %></dd>
 
           <dt>Max Wears:</dt>
+        <% clothing_count = clothing.wears.count %>
+      <% if clothing_count = clothing.max_no_wears %>
+        <% clothing.needs_cleaning = true %>
+        <% else clothing.needs_cleaning = false %>
+      <% end %>
+
+
           <dd><%= clothing.max_no_wears %></dd>
 
           <dt>Actual Wears:</dt>
           <dd> <%= clothing.wears.count %> </dd>
 
-         <dt>Last Dry Clean on</dt>
-         <dd> <%= clothing.wears.last %> </dd>
-
           <dt>Description:</dt>
-          <dd><%= clothing.description.capitalize %></dd>
-
+          <dd><%= clothing.description %></dd>
         </dl>
         <div class="btn-group btn-group-justified">
           <a href="/clothings/<%= clothing.id %>" class="btn btn-primary">
@@ -50,12 +55,16 @@
             <i class="fa fa-plus-square"></i>
 
           </a>
+          <a href="/dry_cleans/new/<%= clothing.id %>" class="btn btn-warning" rel="nofollow">
+            <i class="fa fa-tint"></i>
+          </a>
 
-          <% end %>
+
         </div>
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 </div>
 

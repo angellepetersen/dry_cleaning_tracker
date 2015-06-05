@@ -1,0 +1,59 @@
+
+
+  <div class="page-header">
+  <h1>
+    Dry Cleaning List
+  </h1>
+</div>
+
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Clothing (start typing)" class="form-control">
+  </div>
+</div>
+
+
+
+<hr>
+
+<div class="row isotope-container">
+ <% @clothings.each do |clothing| %>
+ <% if clothing.user_id == current_user.id %>
+   <% if clothing.needs_cleaning == true %>
+    <div class="col-xs-20 col-sm-8 col-md-15 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Item #<%= clothing.id %></h3>
+      </div>
+      <div class="dl-horizontal">
+        <dl>
+          <!--dt>Needs cleaning? </dt>
+          <dd><%= clothing.needs_cleaning %></dd-->
+
+          <dt>Description:</dt>
+          <dd><%= clothing.description %></dd>
+        </dl>
+        <div class="btn-group btn-group-justified">
+          <a href="/clothings/<%= clothing.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+
+          <a href="/wears/new/<%= clothing.id %>" class="btn btn-default" rel="nofollow">
+            <i class="fa fa-plus-square"></i>
+
+          </a>
+          <a href="/dry_cleans/new/<%= clothing.id %>" class="btn btn-warning" rel="nofollow">
+            <i class="fa fa-tint"></i>
+          </a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
+<% end %>
+</div>

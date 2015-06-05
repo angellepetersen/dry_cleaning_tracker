@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   get "/clothings/new", :controller => "clothings", :action => "new"
   post "/create_clothing", :controller => "clothings", :action => "create"
 
+  get "/clothings/drycleaninglist", :controller => "clothings", :action => "drycleaninglist"
   # READ
   get "/clothings", :controller => "clothings", :action => "index"
   get "/clothings/:id", :controller => "clothings", :action => "show"

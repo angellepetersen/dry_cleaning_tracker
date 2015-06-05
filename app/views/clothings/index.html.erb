@@ -31,13 +31,6 @@
           <dd><%= clothing.needs_cleaning %></dd>
 
           <dt>Max Wears:</dt>
-        <% clothing_count = clothing.wears.count %>
-      <% if clothing_count = clothing.max_no_wears %>
-        <% clothing.needs_cleaning = true %>
-        <% else clothing.needs_cleaning = false %>
-      <% end %>
-
-
           <dd><%= clothing.max_no_wears %></dd>
 
           <dt>Actual Wears:</dt>

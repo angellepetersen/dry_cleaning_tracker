@@ -34,7 +34,8 @@ class DryCleansController < ApplicationController
   def record
     @dry_clean = DryClean.new
     @dry_clean.clothing_id = params[:clothing_id]
-
+    @dry_clean.clothing.wears.destroy_all
+    @dry_clean.clothing.needs_cleaning = false
     @dry_clean.save
 
     redirect_to "/clothings", :notice => "Dry Clean recorded successfully."

@@ -34,6 +34,13 @@ class WearsController < ApplicationController
       @wear = Wear.new
       @wear.clothing_id = params[:clothing_id]
 
+      clothing_count = @wear.clothing.wears.count
+      if clothing_count >= @wear.clothing.max_no_wears - 1
+         @wear.clothing.needs_cleaning = true
+         else
+           @wear.clothing.needs_cleaning = false
+      end
+    @wear.clothing.save
     @wear.save
 
     redirect_to "/clothings", :notice => "Wear recorded successfully."

@@ -55,6 +55,10 @@ class ClothingsController < ApplicationController
     end
   end
 
+  def drycleaninglist
+    @clothings = Clothing.all
+  end
+
   def destroy
     @clothing = Clothing.find(params[:id])
     @clothing.user_id = current_user.id

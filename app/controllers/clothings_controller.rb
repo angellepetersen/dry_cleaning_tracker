@@ -1,9 +1,11 @@
 class ClothingsController < ApplicationController
   before_action :check_if_owner, only: [:read, :edit, :update, :destroy]
 
+
   def check_if_owner
   clothing = Clothing.find(params[:id])
-    if @clothing.user_id != current_user.id
+  clothing.user_id = current_user.id
+    if clothing.user_id != current_user.id
       redirect_to "/clothings", notice: "Nope! That's not yours"
     end
   end
@@ -61,7 +63,6 @@ class ClothingsController < ApplicationController
 
   def destroy
     @clothing = Clothing.find(params[:id])
-    @clothing.user_id = current_user.id
     @clothing.destroy
 
 

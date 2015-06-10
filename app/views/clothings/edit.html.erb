@@ -50,7 +50,7 @@
               Category
             </label>
             <div class="col-sm-10">
-              <input type="text" id="description" name="description" placeholder="CDescription" class="form-control" value="<%= @clothing.description %>">
+              <%= select_tag(:description, options_for_select(['Pants', 'Shirt', 'Dress', 'Other'])) %>
             </div>
           </div>
 

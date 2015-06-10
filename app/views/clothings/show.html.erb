@@ -10,6 +10,10 @@
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
+              <!--input type="hidden" name="user_id" value="<%= current_user.id %>"
+              <dt> User ID</dt>
+              <dd><%= @clothing.user_id %></dd-->
+
               <dt>Needs cleaning</dt>
               <dd><%= @clothing.needs_cleaning %></dd>
 
@@ -18,6 +22,7 @@
 
               <dt>Actual wears</dt>
               <dd><%=  @clothing.wears.count %></dd>
+
               <% if @clothing.dry_cleans.last %>
               <dt>Last Dry Clean Date</dt>
               <dd> <%=  @clothing.dry_cleans.last.updated_at %></dd>

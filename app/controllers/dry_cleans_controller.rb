@@ -36,6 +36,17 @@ class DryCleansController < ApplicationController
     @dry_clean.clothing_id = params[:clothing_id]
     @dry_clean.clothing.wears.destroy_all
     @dry_clean.clothing.needs_cleaning = false
+
+    clothing_count = @dry_clean.clothing.wears.count
+    if clothing_count >= @dry_clean.clothing.max_no_wears - 1
+         @dry_clean.clothing.needs_cleaning = true
+         else
+           @dry_clean.clothing.needs_cleaning = false
+      end
+    @dry_clean.clothing.save
+
+
+
     @dry_clean.save
 
     redirect_to "/clothings", :notice => "Dry Clean recorded successfully."

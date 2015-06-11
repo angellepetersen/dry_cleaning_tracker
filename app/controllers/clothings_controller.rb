@@ -48,7 +48,6 @@ class ClothingsController < ApplicationController
     @clothing = Clothing.find(params[:id])
     @clothing.user_id = current_user.id
     @clothing.max_no_wears = params[:max_no_wears]
-    @clothing.description = params[:description]
 
     if @clothing.save
       redirect_to "/clothings", :notice => "Clothing details updated successfully."
